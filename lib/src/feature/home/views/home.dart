@@ -1,6 +1,7 @@
 import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
+import 'package:fairyaatra/src/feature/search/views/search.dart';
 import 'package:flutter/material.dart';
 
 class FlightSearchPage extends StatelessWidget {
@@ -188,7 +189,33 @@ class FlightSearchPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    const FlightSearchResultsPage(),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              const begin =
+                                  Offset(1.0, 0.0); // Start from the right
+                              const end =
+                                  Offset.zero; // End at the current position
+                              const curve = Curves.easeInOut;
+
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
+
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         minimumSize: const Size(double.infinity, 50),
