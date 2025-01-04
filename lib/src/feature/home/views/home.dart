@@ -1,6 +1,7 @@
 import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
+import 'package:fairyaatra/src/feature/home/widget/sidebar.dart';
 import 'package:fairyaatra/src/feature/search/views/search.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class FlightSearchPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue[800],
         elevation: 0,
-        leading: const Icon(Icons.menu),
+        //leading: const Icon(Icons.menu),
         title: const Text(
           "fairyaatra",
           style: TextStyle(
@@ -29,6 +30,7 @@ class FlightSearchPage extends StatelessWidget {
           // ),
         ],
       ),
+      drawer: const CustomDrawer(),
       body: Column(
         children: [
           // Tabs: Flights, Hotels, Experiences
