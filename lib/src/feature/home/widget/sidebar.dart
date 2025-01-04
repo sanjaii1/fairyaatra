@@ -7,12 +7,16 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Drawer Header
+
           DrawerHeader(
             decoration: const BoxDecoration(
               color: Colors.blue,
             ),
+            margin: EdgeInsets.zero,
+            //padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
