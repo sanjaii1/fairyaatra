@@ -1,4 +1,3 @@
-import 'package:fairyaatra/src/feature/home/views/home.dart';
 import 'package:fairyaatra/src/feature/login/views/login.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: AuthPage(),
     );
   }
 }

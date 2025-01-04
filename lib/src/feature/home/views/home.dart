@@ -1,10 +1,8 @@
-import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
-import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/flightSearchWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/hotelWidget.dart';
-import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
+
 import 'package:fairyaatra/src/feature/home/widget/sidebar.dart';
-import 'package:fairyaatra/src/feature/search/views/search.dart';
+
 import 'package:flutter/material.dart';
 
 class FlightSearchPage extends StatefulWidget {
