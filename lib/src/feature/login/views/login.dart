@@ -21,10 +21,10 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: const Icon(
-          Icons.close,
-          color: Colors.black,
-        ),
+        // leading: const Icon(
+        //   Icons.close,
+        //   color: Colors.black,
+        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -36,42 +36,42 @@ class LoginPage extends StatelessWidget {
               textAlign: TextAlign.center,
               text: const TextSpan(
                 children: [
+                  // TextSpan(
+                  //   text: "",
+                  //   style: TextStyle(
+                  //     fontSize: 24,
+                  //     color: Colors.black,
+                  //     fontWeight: FontWeight.normal,
+                  //   ),
+                  // ),
                   TextSpan(
-                    text: "The ",
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  TextSpan(
-                    text: "one-stop travel ",
+                    text: "Find your best fair",
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  TextSpan(
-                    text: "app",
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
+                  // TextSpan(
+                  //   text: "",
+                  //   style: TextStyle(
+                  //     fontSize: 24,
+                  //     color: Colors.black,
+                  //     fontWeight: FontWeight.normal,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              "Book Buses",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
-              ),
-            ),
+            // const Text(
+            //   "Book Buses",
+            //   textAlign: TextAlign.center,
+            //   style: TextStyle(
+            //     fontSize: 16,
+            //     color: Colors.black,
+            //   ),
+            // ),
             const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
