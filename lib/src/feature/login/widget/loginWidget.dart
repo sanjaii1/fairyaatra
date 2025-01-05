@@ -5,14 +5,15 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            "Email Address",
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-          ),
+          // const Text(
+          //   "Email Address",
+          //   style: TextStyle(
+          //       fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+          // ),
           const SizedBox(height: 10),
           TextField(
             decoration: InputDecoration(
@@ -65,10 +66,13 @@ class LoginPage extends StatelessWidget {
           const SizedBox(height: 10),
           ElevatedButton.icon(
             onPressed: () {},
-            icon: const Icon(Icons.lock, color: Colors.white),
-            label: const Text("Login with Password"),
+            icon: const Icon(Icons.lock, color: Colors.black),
+            label: const Text(
+              "Login with Password",
+              style: TextStyle(color: Colors.black),
+            ),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
+              backgroundColor: Colors.grey.shade300,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
