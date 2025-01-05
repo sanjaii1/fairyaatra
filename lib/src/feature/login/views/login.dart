@@ -34,7 +34,7 @@ class _AuthPageState extends State<AuthPage> {
               Color.fromARGB(255, 17, 17, 17),
               Color.fromARGB(255, 94, 2, 2),
             ],
-            stops: [0.0, 0.5, 1.0], // Smooth gradient transition
+            stops: [0.0, 0.5, 1.0],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -141,16 +141,29 @@ class _AuthPageState extends State<AuthPage> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    // AnimatedSwitcher for Login and Signup Pages
+                    // AnimatedSwitcher with Fade + Scale Transition
                     AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 500),
-                      switchInCurve: Curves.linear,
-                      switchOutCurve: Curves.linear,
+                      duration: const Duration(milliseconds: 250),
+                      switchInCurve: Curves.easeInOut,
+                      switchOutCurve: Curves.easeInOut,
                       transitionBuilder:
                           (Widget child, Animation<double> animation) {
-                        return ScaleTransition(scale: animation, child: child);
+                        return FadeTransition(
+                          opacity: animation,
+                          child: ScaleTransition(
+                            scale: Tween<double>(begin: 0.95, end: 1.0)
+                                .animate(animation),
+                            child: child,
+                          ),
+                        );
                       },
-                      child: isLogin ? LoginPage() : SignupPage(),
+                      child: isLogin
+                          ? const LoginPage(
+                              key: ValueKey('LoginPage'),
+                            )
+                          : const SignupPage(
+                              key: ValueKey('SignupPage'),
+                            ),
                     ),
                   ],
                 ),

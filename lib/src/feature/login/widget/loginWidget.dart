@@ -2,6 +2,7 @@ import 'package:fairyaatra/src/feature/home/views/home.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,6 +21,10 @@ class LoginPage extends StatelessWidget {
               hintText: "Email Address",
               filled: true,
               fillColor: const Color(0xFFF5F5F5),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 5, // Reduces the height
+                horizontal: 15,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
@@ -78,7 +83,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
         ],
       ),
     );

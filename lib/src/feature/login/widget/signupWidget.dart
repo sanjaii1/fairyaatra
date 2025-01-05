@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Separate Signup Page
 class SignupPage extends StatelessWidget {
+  const SignupPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,6 +20,10 @@ class SignupPage extends StatelessWidget {
               hintText: "Full Name",
               filled: true,
               fillColor: const Color(0xFFF5F5F5),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 10, // Reduces the height
+                horizontal: 15,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
@@ -36,6 +41,10 @@ class SignupPage extends StatelessWidget {
               hintText: "Email Address",
               filled: true,
               fillColor: const Color(0xFFF5F5F5),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 10, // Reduces the height
+                horizontal: 15,
+              ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
