@@ -13,18 +13,7 @@ class CustomDrawer extends StatelessWidget {
           children: [
             // Drawer Header
             DrawerHeader(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 0, 2, 4),
-                    Color.fromARGB(255, 17, 17, 17),
-                    Color.fromARGB(255, 72, 5, 5),
-                  ],
-                  stops: [0.0, 0.5, 1.0],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
+              decoration: const BoxDecoration(color: Colors.black),
               margin: EdgeInsets.zero,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
