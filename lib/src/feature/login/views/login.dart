@@ -8,7 +8,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  bool isLogin = true; // Determines whether to show Login or Signup
+  bool isLogin = true; 
 
   void showLogin() {
     setState(() {
