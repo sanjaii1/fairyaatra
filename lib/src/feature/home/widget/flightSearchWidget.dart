@@ -10,7 +10,7 @@ class Flightsearchwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      color: Colors.white,
       child: Column(
         children: [
           const SizedBox(height: 30),
@@ -129,13 +129,13 @@ class Flightsearchwidget extends StatelessWidget {
                             ),
                           ],
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                          ),
-                          child: const Text("BOOK"),
-                        ),
+                        // ElevatedButton(
+                        //   onPressed: () {},
+                        //   style: ElevatedButton.styleFrom(
+                        //     backgroundColor: Colors.green,
+                        //   ),
+                        //   child: const Text("BOOK"),
+                        // ),
                       ],
                     ),
                     const SizedBox(height: 20),
