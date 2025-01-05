@@ -80,10 +80,20 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
                           ),
                         ),
                         const Icon(Icons.swap_horiz, color: Colors.red),
-                        const LocationWidget(
-                          label: "TO",
-                          code: "BLR",
-                          city: "Bengaluru",
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const WhereFromPage()), // Replace with your logic
+                            );
+                          },
+                          child: const LocationWidget(
+                            label: "TO",
+                            code: "BLR",
+                            city: "Bengaluru",
+                          ),
                         ),
                       ],
                     ),

@@ -6,10 +6,10 @@ class WhereFromPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1B1D28), // Dark background color
+      backgroundColor: Colors.black, // Dark background color
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1B1D28),
+        backgroundColor: Colors.black,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.close, color: Colors.white),
