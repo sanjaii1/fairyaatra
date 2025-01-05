@@ -32,7 +32,7 @@ class _AuthPageState extends State<AuthPage> {
             colors: [
               Color.fromARGB(255, 0, 2, 4),
               Color.fromARGB(255, 17, 17, 17),
-              Color.fromARGB(255, 94, 2, 2),
+              Color.fromARGB(255, 64, 2, 2),
             ],
             stops: [0.0, 0.5, 1.0],
             begin: Alignment.topLeft,
@@ -55,38 +55,42 @@ class _AuthPageState extends State<AuthPage> {
                       text: const TextSpan(
                         children: [
                           TextSpan(
-                            text: "The ",
+                            text: "Rare, ",
                             style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                            ),
+                                fontSize: 26,
+                                color: Colors.red,
+                                fontFamily: 'Pacifico',
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FontStyle.italic),
                           ),
                           TextSpan(
-                            text: "one-stop travel ",
+                            text: "Like Your ",
                             style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Pacifico',
+                                fontStyle: FontStyle.italic),
                           ),
                           TextSpan(
-                            text: "app",
+                            text: "Adventures",
                             style: TextStyle(
-                              fontSize: 24,
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                            ),
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontFamily: 'Pacifico',
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FontStyle.italic),
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 15),
                     const Text(
-                      "Book Buses",
+                      "Compare the best prices",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
+                        fontStyle: FontStyle.italic,
                         color: Colors.white,
                       ),
                     ),
