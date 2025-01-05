@@ -8,7 +8,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  bool isLogin = true; 
+  bool isLogin = true;
 
   void showLogin() {
     setState(() {
@@ -49,6 +49,13 @@ class _AuthPageState extends State<AuthPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    // Logo
+                    Image.asset(
+                      'assets/images/logo.png', // Update the path to your logo
+                      height: 200,
+                      width: 200,
+                    ),
+                    // const SizedBox(height: 20),
                     // Header
                     RichText(
                       textAlign: TextAlign.center,
@@ -57,34 +64,36 @@ class _AuthPageState extends State<AuthPage> {
                           TextSpan(
                             text: "Rare, ",
                             style: TextStyle(
-                                fontSize: 26,
-                                color: Color.fromARGB(255, 183, 20, 9),
-                                fontFamily: 'Pacifico',
-                                fontWeight: FontWeight.normal,
-                                fontStyle: FontStyle.italic),
+                              fontSize: 26,
+                              color: Color.fromARGB(255, 183, 20, 9),
+                              fontFamily: 'Pacifico',
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
                           TextSpan(
                             text: "Like Your ",
                             style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.white,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: 'Pacifico',
-                                fontStyle: FontStyle.italic),
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Pacifico',
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
                           TextSpan(
                             text: "Adventures",
                             style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.white,
-                                fontFamily: 'Pacifico',
-                                fontWeight: FontWeight.normal,
-                                fontStyle: FontStyle.italic),
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontFamily: 'Pacifico',
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    // const SizedBox(height: 15),
                     const Text(
                       "Compare the best prices",
                       textAlign: TextAlign.center,

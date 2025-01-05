@@ -1,6 +1,7 @@
 import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
+import 'package:fairyaatra/src/feature/home/widget/searchPlaceWidget.dart';
 import 'package:flutter/material.dart';
 
 class Flightsearchwidget extends StatefulWidget {
@@ -15,26 +16,33 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
+    final bottomInset =
+        MediaQuery.of(context).viewInsets.bottom; // Keyboard height
+
+    return Scaffold(
+      resizeToAvoidBottomInset: true, // Ensure UI resizes when keyboard opens
+      backgroundColor: Colors.black,
+      body: Column(
         children: [
           const SizedBox(height: 30),
           // Trip Type Toggle
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildTripTypeButton("One Way", 0),
-                _buildTripTypeButton("Round Trip", 1),
-                _buildTripTypeButton("Multicity", 2),
-              ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildTripTypeButton("One Way", 0),
+                  _buildTripTypeButton("Round Trip", 1),
+                  _buildTripTypeButton("Multicity", 2),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 30),
@@ -49,20 +57,30 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.fromLTRB(20, 20, 20, bottomInset),
                 child: Column(
                   children: [
                     // FROM and TO Locations
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        LocationWidget(
-                          label: "FROM",
-                          code: "DEL",
-                          city: "Delhi",
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const WhereFromPage()), // Replace with your logic
+                            );
+                          },
+                          child: const LocationWidget(
+                            label: "FROM",
+                            code: "DEL",
+                            city: "Delhi",
+                          ),
                         ),
-                        Icon(Icons.swap_horiz, color: Colors.red),
-                        LocationWidget(
+                        const Icon(Icons.swap_horiz, color: Colors.red),
+                        const LocationWidget(
                           label: "TO",
                           code: "BLR",
                           city: "Bengaluru",
@@ -106,7 +124,7 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
                         // Handle Search Button Logic
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: const Color.fromARGB(255, 113, 11, 4),
                         minimumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),

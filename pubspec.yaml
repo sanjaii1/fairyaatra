@@ -63,6 +63,7 @@ flutter:
 
   assets:
     - assets/images/download.png # Single file
+    - assets/images/logo.png
     - assets/images/ # Include all files in the images directory
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
