@@ -26,12 +26,13 @@ class _FlightSearchPageState extends State<FlightSearchPage> {
     return Scaffold(
       backgroundColor: Colors.blue[800],
       appBar: AppBar(
-        backgroundColor: Colors.blue[800],
+        backgroundColor: Colors.black,
         elevation: 0,
-        //leading: const Icon(Icons.menu),
+        iconTheme: const IconThemeData(color: Colors.red),
         title: const Text(
           "fairyaatra",
           style: TextStyle(
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
@@ -52,8 +53,9 @@ class _FlightSearchPageState extends State<FlightSearchPage> {
             _selectedIndex = index; // Update the selected tab
           });
         },
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.red,
+        backgroundColor: Colors.black,
+        unselectedItemColor: Colors.white,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.flight),

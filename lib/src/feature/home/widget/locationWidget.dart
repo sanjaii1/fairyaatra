@@ -17,16 +17,16 @@ class LocationWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+        Text(label, style: const TextStyle(color: Colors.white, fontSize: 14)),
         Text(
           code,
           style: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(city, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+        Text(city, style: const TextStyle(color: Colors.white, fontSize: 14)),
       ],
     );
   }

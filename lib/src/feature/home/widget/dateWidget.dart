@@ -18,17 +18,18 @@ class DateWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+          Text(label,
+              style: const TextStyle(color: Colors.white, fontSize: 14)),
           const SizedBox(height: 4),
           Text(
             date,
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(day, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+          Text(day, style: const TextStyle(color: Colors.white, fontSize: 14)),
         ],
       ),
     );

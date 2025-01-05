@@ -16,12 +16,13 @@ class DetailWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
+          Text(label,
+              style: const TextStyle(color: Colors.white, fontSize: 14)),
           const SizedBox(height: 4),
           Text(
             value,
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
