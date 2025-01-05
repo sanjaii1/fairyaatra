@@ -1,11 +1,17 @@
 import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
-import 'package:fairyaatra/src/feature/search/views/search.dart';
 import 'package:flutter/material.dart';
 
-class Flightsearchwidget extends StatelessWidget {
+class Flightsearchwidget extends StatefulWidget {
   const Flightsearchwidget({Key? key}) : super(key: key);
+
+  @override
+  State<Flightsearchwidget> createState() => _FlightsearchwidgetState();
+}
+
+class _FlightsearchwidgetState extends State<Flightsearchwidget> {
+  int _selectedTripType = 0; // 0 = One Way, 1 = Round Trip, 2 = Multicity
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class Flightsearchwidget extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 30),
-
+          // Trip Type Toggle
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
             padding: const EdgeInsets.symmetric(vertical: 8),
@@ -25,38 +31,14 @@ class Flightsearchwidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "One way",
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Text(
-                    "Round trip",
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Multi-city",
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                ),
+                _buildTripTypeButton("One Way", 0),
+                _buildTripTypeButton("Round Trip", 1),
+                _buildTripTypeButton("Multicity", 2),
               ],
             ),
           ),
           const SizedBox(height: 30),
-          // From and To Locations
+          // Main Content
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
@@ -70,6 +52,7 @@ class Flightsearchwidget extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
+                    // FROM and TO Locations
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -88,23 +71,27 @@ class Flightsearchwidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     // Departure and Return Dates
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        DateWidget(
-                          label: "DEPARTURE",
-                          date: "09 Jan",
-                          day: "Thursday",
-                        ),
-                        DateWidget(
-                          label: "RETURN",
-                          date: "16 Jan",
-                          day: "Thursday",
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    // Traveller and Class
+                    if (_selectedTripType == 0 || _selectedTripType == 1) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const DateWidget(
+                            label: "DEPARTURE",
+                            date: "09 Jan",
+                            day: "Thursday",
+                          ),
+                          if (_selectedTripType ==
+                              1) // Show RETURN for Round Trip
+                            const DateWidget(
+                              label: "RETURN",
+                              date: "16 Jan",
+                              day: "Thursday",
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                    // Traveller and Class Details
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: const [
@@ -113,59 +100,10 @@ class Flightsearchwidget extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    // Hotel Deals and Search Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Direct Hotel Deals",
-                              style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // ElevatedButton(
-                        //   onPressed: () {},
-                        //   style: ElevatedButton.styleFrom(
-                        //     backgroundColor: Colors.green,
-                        //   ),
-                        //   child: const Text("BOOK"),
-                        // ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
+                    // Search Button
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    const FlightSearchResultsPage(),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              const begin =
-                                  Offset(1.0, 0.0); // Start from the right
-                              const end =
-                                  Offset.zero; // End at the current position
-                              const curve = Curves.easeInOut;
-
-                              var tween = Tween(begin: begin, end: end)
-                                  .chain(CurveTween(curve: curve));
-                              var offsetAnimation = animation.drive(tween);
-
-                              return SlideTransition(
-                                position: offsetAnimation,
-                                child: child,
-                              );
-                            },
-                          ),
-                        );
+                        // Handle Search Button Logic
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -189,6 +127,31 @@ class Flightsearchwidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTripTypeButton(String label, int index) {
+    final isSelected = _selectedTripType == index;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedTripType = index;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.white : Colors.black,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: isSelected ? Colors.red : Colors.white70,
+            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
       ),
     );
   }
