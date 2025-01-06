@@ -1,3 +1,4 @@
+import 'package:fairyaatra/src/feature/home/widget/datePicker.dart';
 import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
@@ -103,10 +104,19 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const DateWidget(
-                            label: "DEPARTURE",
-                            date: "09 Jan",
-                            day: "Thursday",
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DatePickerScreen()),
+                              );
+                            },
+                            child: const DateWidget(
+                              label: "DEPARTURE",
+                              date: "09 Jan",
+                              day: "Thursday",
+                            ),
                           ),
                           if (_selectedTripType ==
                               1) // Show RETURN for Round Trip
