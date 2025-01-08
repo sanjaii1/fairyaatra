@@ -1,3 +1,4 @@
+import 'package:fairyaatra/src/feature/home/widget/classSelectionWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/datePicker.dart';
 import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
@@ -130,12 +131,32 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
                       const SizedBox(height: 20),
                     ],
                     // Traveller and Class Details
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        DetailWidget(label: "TRAVELLER", value: "1 Adult"),
-                        DetailWidget(label: "CLASS", value: "Economy"),
-                      ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const TravelersScreen()), // Replace with your logic
+                        );
+                      },
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const TravelersScreen()), // Replace with your logic
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            DetailWidget(label: "TRAVELLER", value: "1 Adult"),
+                            DetailWidget(label: "CLASS", value: "Economy"),
+                          ],
+                        ),
+                      ),
                     ),
                     const Spacer(),
                     // Search Button
