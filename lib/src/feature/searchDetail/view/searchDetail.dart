@@ -1,3 +1,4 @@
+import 'package:fairyaatra/src/feature/common/webview.dart';
 import 'package:flutter/material.dart';
 
 class FlightDetailsScreen extends StatefulWidget {
@@ -310,7 +311,14 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                           ),
                           onTap: () {
                             // Handle provider selection logic here
-                            Navigator.pop(context); // Close the bottom sheet
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WebViewScreen(
+                                  url: provider["url"],
+                                ),
+                              ),
+                            ); // Close the bottom sheet
                           },
                         );
                       },
@@ -326,13 +334,24 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
   }
 
   final List<Map<String, dynamic>> providers = [
-    {"name": "Goibibo", "price": "₹12,144", "icon": Icons.flight},
+    {
+      "name": "Goibibo",
+      "price": "₹12,144",
+      "icon": Icons.flight,
+      "url": "https://www.goibibo.com"
+    },
     {
       "name": "MakeMyTrip",
       "price": "₹12,200",
-      "icon": Icons.airplanemode_active
+      "icon": Icons.airplanemode_active,
+      "url": "https://www.makemytrip.com"
     },
-    {"name": "EaseMyTrip", "price": "₹11,950", "icon": Icons.luggage},
+    {
+      "name": "EaseMyTrip",
+      "price": "₹11,950",
+      "icon": Icons.luggage,
+      "url": "https://www.easemytrip.com"
+    },
   ];
 
   void _showSearchBottomSheet(BuildContext context) {
