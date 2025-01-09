@@ -18,7 +18,7 @@ class _FlightSearchPageState extends State<FlightSearchPage> {
   // List of pages for navigation
   final List<Widget> _pages = [
     const Flightsearchwidget(),
-    const HotelSearchWidget(),
+    const HotelSearchPage(),
     const Flightsearchwidget(),
   ];
   @override
