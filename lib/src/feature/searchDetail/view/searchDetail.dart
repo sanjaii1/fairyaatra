@@ -235,7 +235,10 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          child: const Text('Select provider'),
+          child: const Text(
+            'Select provider',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
     );
