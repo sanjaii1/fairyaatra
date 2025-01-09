@@ -105,7 +105,6 @@ class _FlightListScreenState extends State<FlightListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: false,
       backgroundColor: Colors.black,
       appBar: _buildAppBar(),
       //backgroundColor: Colors.black,
