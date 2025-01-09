@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:fairyaatra/src/feature/searchDetail/view/searchDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,6 +10,9 @@ class FlightListScreen extends StatefulWidget {
 }
 
 class _FlightListScreenState extends State<FlightListScreen> {
+  int _selectedOption = 0; // 0: Return, 1: One Way, 2: Multi-City
+  String fromLocation = "Bengaluru";
+  String toLocation = "Indira Gandhi International";
   final List<Map<String, dynamic>> flights = [
     {
       'airline': 'Air Kerala',
@@ -164,15 +170,252 @@ class _FlightListScreenState extends State<FlightListScreen> {
               itemCount: flights.length,
               itemBuilder: (context, index) {
                 final flight = flights[index];
-                return FlightCard(
-                  flight: flight,
-                  onFavoriteToggle: () {
-                    setState(() {
-                      flight['isFavorite'] = !flight['isFavorite'];
-                    });
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FlightDetailsScreen()),
+                    );
                   },
+                  child: FlightCard(
+                    flight: flight,
+                    onFavoriteToggle: () {
+                      setState(() {
+                        flight['isFavorite'] = !flight['isFavorite'];
+                      });
+                    },
+                  ),
                 );
               },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showSearchBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ToggleButtons(
+                        isSelected: [
+                          _selectedOption == 0,
+                          _selectedOption == 1,
+                          _selectedOption == 2,
+                        ],
+                        onPressed: (int index) {
+                          setState(() {
+                            _selectedOption = index;
+                          });
+                        },
+                        color: Colors.grey,
+                        selectedColor: Colors.white,
+                        fillColor: Colors.transparent,
+                        borderColor: Colors.transparent,
+                        selectedBorderColor: Colors.transparent,
+                        constraints: const BoxConstraints(minWidth: 80),
+                        children: const [
+                          Text("Return"),
+                          Text("One way"),
+                          Text("Multi-city"),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.close, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+
+                  /// Updated Section with Overlapping Arrow
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          _buildAirportSelector(
+                              context, fromLocation, Icons.flight_takeoff),
+                          const SizedBox(height: 16),
+                          _buildAirportSelector(
+                              context, toLocation, Icons.flight_land),
+                        ],
+                      ),
+                      Positioned(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              // Swap the locations
+                              final temp = fromLocation;
+                              fromLocation = toLocation;
+                              toLocation = temp;
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.blueAccent,
+                            ),
+                            child: const Icon(
+                              Icons.swap_vert,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildDateSelector(context, 'Tue, 14 Jan'),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildDateSelector(context, 'Tue, 21 Jan'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildPassengerSelector(context, '1 0 0'),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildClassSelector(context, 'Economy'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildPassengerSelector(BuildContext context, String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.person, color: Colors.white, size: 20),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const Spacer(),
+          const Icon(Icons.arrow_drop_down, color: Colors.white, size: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildClassSelector(BuildContext context, String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.airline_seat_recline_normal,
+              color: Colors.white, size: 20),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const Spacer(),
+          const Icon(Icons.arrow_drop_down, color: Colors.white, size: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDateSelector(BuildContext context, String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.calendar_today, color: Colors.white, size: 20),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const Spacer(),
+          const Icon(Icons.arrow_drop_down, color: Colors.white, size: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAirportSelector(
+      BuildContext context, String label, IconData icon) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E1E1E),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.white, size: 20),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              label,
+              style: const TextStyle(color: Colors.white, fontSize: 14),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -193,25 +436,46 @@ class _FlightListScreenState extends State<FlightListScreen> {
           Navigator.pop(context);
         },
       ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Kochi – Indira Gandhi International",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      title: GestureDetector(
+        onTap: () => _showSearchBottomSheet(context),
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "COK – BLR",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.visible),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                  ),
+                  Icon(
+                    Icons.edit,
+                    size: 14,
+                    //size: 1,
+                  ),
+                ],
+              ),
+              SizedBox(height: 4),
+              Text(
+                "Jan 14",
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
+              ),
+            ],
           ),
-          SizedBox(height: 4),
-          Text(
-            "Jan 14",
-            style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
-          ),
-        ],
+        ),
       ),
       actions: [
         IconButton(
           icon: Icon(Icons.notifications_none, size: 22),
           onPressed: () {
-            // Navigator.pop(context);
+            //Navigator.pop(context);
           },
         ),
       ],
