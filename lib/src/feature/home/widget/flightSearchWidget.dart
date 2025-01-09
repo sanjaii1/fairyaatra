@@ -4,6 +4,7 @@ import 'package:fairyaatra/src/feature/home/widget/dateWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/detailWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/locationWidget.dart';
 import 'package:fairyaatra/src/feature/home/widget/searchPlaceWidget.dart';
+import 'package:fairyaatra/src/feature/search/views/search.dart';
 import 'package:flutter/material.dart';
 
 class Flightsearchwidget extends StatefulWidget {
@@ -163,6 +164,12 @@ class _FlightsearchwidgetState extends State<Flightsearchwidget> {
                     ElevatedButton(
                       onPressed: () {
                         // Handle Search Button Logic
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  FlightListScreen()), // Replace with your logic
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 113, 11, 4),

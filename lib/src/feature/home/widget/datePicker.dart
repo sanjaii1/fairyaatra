@@ -28,10 +28,12 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: Colors.blue,
-              onPrimary: Colors.white,
-              onSurface: Colors.black,
-            ),
+                primary: Colors.white,
+                secondary: Colors.blue,
+                onPrimary: Colors.red,
+                onSurface: Colors.white,
+                onSecondaryFixedVariant: Colors.yellow,
+                onSurfaceVariant: Colors.white),
           ),
           child: child!,
         );

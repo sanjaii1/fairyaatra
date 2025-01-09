@@ -62,7 +62,7 @@ class _TravelersScreenState extends State<TravelersScreen> {
                 ),
               ),
             ),
-            Divider(color: Colors.grey),
+            // Divider(color: Colors.grey),
             buildCounter(
               "Adults",
               "Age 16+",
@@ -84,10 +84,11 @@ class _TravelersScreenState extends State<TravelersScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: const Color.fromARGB(255, 113, 11, 4),
+                  minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
                 onPressed: () {},
                 child: Text(
